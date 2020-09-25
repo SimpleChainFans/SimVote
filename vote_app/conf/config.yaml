@@ -1,0 +1,24 @@
+sipc_Api: https://www.sipc.vip/api/
+local_Api: https://vote.sipc.vip
+appId: 需要向SIPC进行申请获取
+appKey: 需要向SIPC进行申请获取
+voteAmount: 1
+eth_rpc: http://47.91.16.204.8545
+callBackUrl: https://vote.sipc.vip/result/confirming
+indexUrl: https://vote.sipc.vip/
+vote_privateHexKey:  部署普通投票账户私钥
+vote_address: 部署普通投票账户公钥
+verify_url: https://explorer.simplechain.com/api/contract/verify
+contract_version: v0.5.13+commit.5b0b510c
+secret: 自定义的jwt秘钥
+vote_app:
+  ip: mysql
+  user: root
+  password: voteapp
+  port: 3306
+  db_name: vote_app
+  max_idle: 10
+  max_open: 100
+  charset: utf8
+  log_mode: true
+  loc: Asia/Shanghai

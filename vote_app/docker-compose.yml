@@ -1,0 +1,41 @@
+version: '3'
+services:
+  frontend:
+    image: vote_assistant:latest
+    volumes:
+      - app:/home/app
+    ports:
+      - 7687:7687
+
+  bankend:
+    image: vote_app:latest
+    environment:
+      configPath: ./conf/config.yaml
+      port: 7688
+    working_dir: /app
+    volumes:
+      - ./conf/config.dev.yaml:/app/conf/config.yaml
+      - ./conf/contracts:/app/conf/contracts  
+    ports:
+      - 7688:7688
+    command: ./vote_app
+    restart: always
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=voteapp
+      - MYSQL_DATABASE=vote_app
+      - MYSQL_USER=vote
+      - MYSQL_PASSWORD=voteapp
+    ports:
+      - "3307:3306"
+    expose:
+      - "3306"
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ./data/sql:/tmp/sql
+    restart: always
+
+volumes:
+   app:
